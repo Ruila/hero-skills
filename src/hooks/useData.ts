@@ -2,15 +2,12 @@ import { useEffect, useState } from "react"
 import { AxiosResponse } from "axios"
 import { UseAxiosResponse } from "../types/UseAxiosResponse"
 
-interface useAxiosProps<T> {
+interface useDataProps<T> {
   api: () => Promise<AxiosResponse<T>>
   mounted?: boolean
 }
 
-export function useAxios<T>({
-  api,
-  mounted,
-}: useAxiosProps<T>): UseAxiosResponse<T> {
+export function useData<T>({ api }: useDataProps<T>): UseAxiosResponse<T> {
   const [response, setResponse] = useState<T>()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(true)
@@ -29,7 +26,7 @@ export function useAxios<T>({
   }
 
   useEffect(() => {
-    mounted && fetchData()
+    fetchData()
   }, [])
 
   return [response, loading, error]

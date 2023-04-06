@@ -1,16 +1,28 @@
 import React from "react"
 import { Outlet } from "react-router-dom"
 import { getHeroes } from "../api/apis"
-import { useAxios } from "../hooks/useAxios"
+import { useData } from "../hooks/useData"
+import HeroCard from "../components/HeroCard"
+import { CardsBox } from "../components/CardsBox"
+import { Layout } from "../components/Layout"
 
 function Heroes(): JSX.Element {
-  const [response, loading, error] = useAxios({ api: getHeroes, mounted: true })
-  console.log("aaaa", response, loading, error)
+  const [response] = useData({ api: getHeroes })
+  const renderCards =
+    response &&
+    response.map(item => (
+      <HeroCard
+        key={item.image}
+        id={item.id}
+        name={item.name}
+        image={item.image}
+      />
+    ))
   return (
-    <div>
-      heroes
+    <Layout>
+      <CardsBox>{renderCards}</CardsBox>
       <Outlet />
-    </div>
+    </Layout>
   )
 }
 
