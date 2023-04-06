@@ -4,9 +4,7 @@ import { BrowserRouter } from "react-router-dom"
 import { RouterMap } from "./router"
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <RouterMap />
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <RouterMap />
+  </BrowserRouter>
 )
