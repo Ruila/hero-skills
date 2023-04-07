@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { Outlet } from "react-router-dom"
 import { getHeroes } from "../api/apis"
-import HeroCard from "../components/HeroCard"
 import styled from "styled-components"
 import { HeroType } from "../types/HeroType"
+import { HeroesBox } from "../components/HeroesBox"
 
 const Layout = styled.div`
   display: flex;
@@ -12,33 +12,19 @@ const Layout = styled.div`
   flex-direction: column;
 `
 
-const CardsBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-`
-
 function Heroes(): JSX.Element {
   const [heroes, setHeroes] = useState<Array<HeroType>>([])
   const getData = async () => {
     const res = await getHeroes()
     setHeroes(res.data)
   }
-  const renderCards = heroes.map(item => (
-    <HeroCard
-      key={item.image}
-      id={item.id}
-      name={item.name}
-      image={item.image}
-    />
-  ))
   useEffect(() => {
     getData()
   }, [])
+
   return (
     <Layout>
-      <CardsBox>{renderCards}</CardsBox>
+      <HeroesBox data={heroes} />
       <Outlet />
     </Layout>
   )
