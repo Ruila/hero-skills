@@ -12,12 +12,15 @@ const BoardLayout = styled.div`
   border: 1px solid black;
   padding: 16px;
   flex-wrap: wrap;
+  width: 45vw;
+  box-sizing: border-box;
 `
 const SkillsBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 200px;
+  flex: 1;
 `
 const SaveAndRestSkillBox = styled.div`
   display: flex;

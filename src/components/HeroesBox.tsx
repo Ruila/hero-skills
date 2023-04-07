@@ -8,6 +8,7 @@ const CardsBox = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 16px;
+  width: 45vw;
 `
 
 type HeroesBoxProps = {
@@ -15,6 +16,7 @@ type HeroesBoxProps = {
 }
 
 export const HeroesBox = React.memo(({ data }: HeroesBoxProps): JSX.Element => {
+  console.info("HeroesBox")
   const renderCards = data.map(item => (
     <HeroCard
       key={item.image}
