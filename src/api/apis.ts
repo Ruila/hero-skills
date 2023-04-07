@@ -10,3 +10,9 @@ export const getHeroSkill = (
   id: number
 ): Promise<AxiosResponse<HeroSkillType>> =>
   axiosInstance.get(`/heroes/${id}/profile`)
+
+export const updateHeroSkill = (
+  id: number,
+  data: HeroSkillType
+): Promise<AxiosResponse<HeroSkillType>> =>
+  axiosInstance.patch(`/heroes/${id}/profile`, data)

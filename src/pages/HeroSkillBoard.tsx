@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import SkillAdapter from "../components/SkillAdapter"
-import { getHeroSkill } from "../api/apis"
+import { getHeroSkill, updateHeroSkill } from "../api/apis"
 import { HeroSkillType } from "../types/HeroSkillType"
 import { initSkillData } from "../const/initSkillData"
 import { useParams } from "react-router-dom"
@@ -42,6 +42,11 @@ const HeroSkillBoard = (): JSX.Element => {
     setSkill(res.data)
   }
 
+  const saveSkill = async () => {
+    const res = await updateHeroSkill(Number(heroId), skill)
+    console.info(res)
+  }
+
   const addSkill = (skillKey: keyof HeroSkillType) => {
     setSkill({
       ...skill,
@@ -61,6 +66,10 @@ const HeroSkillBoard = (): JSX.Element => {
   useEffect(() => {
     getData()
   }, [heroId])
+
+  useEffect(() => {
+    console.info("sss", skill)
+  }, [skill])
   return (
     <BoardLayout>
       <SkillsBox>
@@ -95,7 +104,12 @@ const HeroSkillBoard = (): JSX.Element => {
       </SkillsBox>
       <SaveAndRestSkillBox>
         <RestSkill>剩餘點數：{restSkill}</RestSkill>
-        <CommonButton text="Save" width={80} />
+        <CommonButton
+          text="Save"
+          width={80}
+          action={saveSkill}
+          disabled={restSkill !== 0}
+        />
       </SaveAndRestSkillBox>
     </BoardLayout>
   )
