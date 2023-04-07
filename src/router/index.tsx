@@ -3,7 +3,7 @@ import React, { ReactElement, Suspense } from "react"
 
 const Home = React.lazy(() => import("../pages/Home"))
 const Heroes = React.lazy(() => import("../pages/Heroes"))
-const HeroProfile = React.lazy(() => import("../pages/HeroProfile"))
+const HeroSkillBoard = React.lazy(() => import("../pages/HeroSkillBoard"))
 
 export const RouterMap = (): ReactElement | null =>
   useRoutes([
@@ -27,7 +27,7 @@ export const RouterMap = (): ReactElement | null =>
           path: ":heroId",
           element: (
             <Suspense>
-              <HeroProfile />
+              <HeroSkillBoard />
             </Suspense>
           ),
         },
