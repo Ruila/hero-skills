@@ -1,8 +1,15 @@
 import React from "react"
 import styled from "styled-components"
 
-const ButtonLayout = styled.div`
-  border: 2px solid #000;
+type SkillButtonProps = {
+  text: string
+  action: () => void
+  disabled?: boolean
+}
+
+const ButtonLayout = styled.div<Omit<SkillButtonProps, "text" | "action">>`
+  border: ${props => (props.disabled ? "2px solid #e5e5e5" : "2px solid #000")};
+  color: ${props => (props.disabled ? "#e5e5e5" : "#000")};
   width: 25px;
   height: 25px;
   text-align: center;
@@ -11,12 +18,16 @@ const ButtonLayout = styled.div`
   cursor: pointer;
 `
 
-type SkillButtonProps = {
-  text: string
-}
-
-function SkillButton({ text }: SkillButtonProps): JSX.Element {
-  return <ButtonLayout>{text}</ButtonLayout>
+function SkillButton({
+  text,
+  action,
+  disabled,
+}: SkillButtonProps): JSX.Element {
+  return (
+    <ButtonLayout onClick={!disabled ? action : undefined} disabled={disabled}>
+      {text}
+    </ButtonLayout>
+  )
 }
 
 export default SkillButton

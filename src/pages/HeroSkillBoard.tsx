@@ -41,16 +41,57 @@ const HeroSkillBoard = (): JSX.Element => {
     const res = await getHeroSkill(Number(heroId))
     setSkill(res.data)
   }
+
+  const addSkill = (skillKey: keyof HeroSkillType) => {
+    setSkill({
+      ...skill,
+      [skillKey]: skill[skillKey] + 1,
+    })
+    setRestSkill(restSkill - 1)
+  }
+
+  const minusSkill = (skillKey: keyof HeroSkillType) => {
+    setSkill({
+      ...skill,
+      [skillKey]: skill[skillKey] - 1,
+    })
+    setRestSkill(restSkill + 1)
+  }
+
   useEffect(() => {
     getData()
   }, [heroId])
   return (
     <BoardLayout>
       <SkillsBox>
-        <SkillAdapter label="STR" value={skill.str} />
-        <SkillAdapter label="INT" value={skill.int} />
-        <SkillAdapter label="AGI" value={skill.agi} />
-        <SkillAdapter label="LUK" value={skill.luk} />
+        <SkillAdapter
+          restSkill={restSkill}
+          label="str"
+          value={skill.str}
+          add={addSkill}
+          minus={minusSkill}
+        />
+        <SkillAdapter
+          restSkill={restSkill}
+          label="int"
+          value={skill.int}
+          add={addSkill}
+          minus={minusSkill}
+        />
+        <SkillAdapter
+          restSkill={restSkill}
+          label="agi"
+          value={skill.agi}
+          add={addSkill}
+          minus={minusSkill}
+        />
+        <SkillAdapter
+          restSkill={restSkill}
+          label="luk"
+          value={skill.luk}
+          add={addSkill}
+          minus={minusSkill}
+        />
       </SkillsBox>
       <SaveAndRestSkillBox>
         <RestSkill>剩餘點數：{restSkill}</RestSkill>

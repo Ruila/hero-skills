@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import SkillButton from "./SkillButton"
+import { HeroSkillType } from "../types/HeroSkillType"
 
 const SkillBox = styled.div`
   display: flex;
@@ -13,6 +14,7 @@ const SkillLabel = styled.div`
   margin: 0 8px;
   width: 60px;
   text-align: center;
+  text-transform: uppercase;
 `
 
 const SkillValue = styled.div`
@@ -23,18 +25,34 @@ const SkillValue = styled.div`
 `
 
 type SkillAdapterProps = {
-  label: string
+  label: keyof HeroSkillType
   value: number
+  restSkill: number
+  add: (skillKey: keyof HeroSkillType) => void
+  minus: (skillKey: keyof HeroSkillType) => void
 }
 
-function SkillAdapter({ label, value }: SkillAdapterProps): JSX.Element {
-  const [skillVal, setSkillVal] = useState<number>(value)
+function SkillAdapter({
+  label,
+  value,
+  add,
+  minus,
+  restSkill,
+}: SkillAdapterProps): JSX.Element {
   return (
     <SkillBox>
       <SkillLabel>{label}</SkillLabel>
-      <SkillButton text="+" />
+      <SkillButton
+        text="+"
+        action={() => add(label)}
+        disabled={restSkill === 0}
+      />
       <SkillValue>{value}</SkillValue>
-      <SkillButton text="-" />
+      <SkillButton
+        text="-"
+        action={() => minus(label)}
+        disabled={value === 0}
+      />
     </SkillBox>
   )
 }
