@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { HeroType } from "../types/HeroType"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const Card = styled.div<{ active: boolean }>`
   padding: 12px;
@@ -20,15 +20,21 @@ const ImageBox = styled.img`
   height: 80px;
 `
 
-function HeroCard({ id, name, image }: HeroType): JSX.Element {
-  const navigate = useNavigate()
-  const { heroId } = useParams()
-  return (
-    <Card onClick={() => navigate(`/heroes/${id}`)} active={heroId === id}>
-      <ImageBox src={image} />
-      <div>{name}</div>
-    </Card>
-  )
-}
+type HeroCardProps = {
+  active: boolean
+} & HeroType
 
-export default HeroCard
+export const HeroCard = React.memo(
+  ({ id, name, image, active }: HeroCardProps): JSX.Element => {
+    return (
+      <Link to={`/heroes/${id}`} replace={active}>
+        <Card active={active}>
+          <ImageBox src={image} />
+          <div>{name}</div>
+        </Card>
+      </Link>
+    )
+  }
+)
+
+HeroCard.displayName = "HeroCard"

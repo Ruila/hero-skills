@@ -1,7 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import { HeroType } from "../types/HeroType"
-import HeroCard from "./HeroCard"
+import { HeroCard } from "./HeroCard"
+import { useParams } from "react-router-dom"
 
 const CardsBox = styled.div`
   display: flex;
@@ -16,13 +17,14 @@ type HeroesBoxProps = {
 }
 
 export const HeroesBox = React.memo(({ data }: HeroesBoxProps): JSX.Element => {
-  console.info("HeroesBox")
+  const { heroId } = useParams()
   const renderCards = data.map(item => (
     <HeroCard
       key={item.image}
       id={item.id}
       name={item.name}
       image={item.image}
+      active={heroId === item.id}
     />
   ))
   return <CardsBox>{renderCards}</CardsBox>
