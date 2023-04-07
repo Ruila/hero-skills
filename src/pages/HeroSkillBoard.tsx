@@ -67,9 +67,6 @@ const HeroSkillBoard = (): JSX.Element => {
     getData()
   }, [heroId])
 
-  useEffect(() => {
-    console.info("sss", skill)
-  }, [skill])
   return (
     <BoardLayout>
       <SkillsBox>
