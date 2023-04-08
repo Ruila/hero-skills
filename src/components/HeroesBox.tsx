@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import { HeroType } from "../types/HeroType"
 import { HeroCard } from "./HeroCard"
 import { useParams } from "react-router-dom"
+import { HeroesBoxProps } from "../types/HeroesBoxProps"
 
 const CardsBox = styled.div`
   display: flex;
@@ -11,10 +11,6 @@ const CardsBox = styled.div`
   margin-bottom: 16px;
   width: 45vw;
 `
-
-type HeroesBoxProps = {
-  data: Array<HeroType>
-}
 
 export const HeroesBox = ({ data }: HeroesBoxProps): JSX.Element => {
   const { heroId } = useParams()

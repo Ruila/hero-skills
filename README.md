@@ -18,6 +18,28 @@ It is a little demo about modifying point skill of heroes.
 
 **React Router DOM**: It enables you to implement dynamic routing in a web app. Unlike the traditional routing architecture in which the routing is handled in a configuration outside a running app, React Router DOM facilitates component-based routing according to the needs of the app and platform.
 
+### Comment Principle
+
+Only comment things e.g. `// TODO` if the code is uncompleted or will be used in the future.
+
+### Obstacles to overcome
+
+First time using `styled-component`, figuring out the art of decomposing components in the most efficient way took me some time, but I eventually did it by observing common factors and extracting them out along the way.
+
+### Folder Structure
+
++ /src/api - axios Instance and APIs
+
++ /src/components - reusable components
+
++ /src/const - constant data for initializing or dummy data
+
++ /src/pages - page components
+
++ /src/types - 
+
+
+
 ### Install Dependencies
 
 `yarn`

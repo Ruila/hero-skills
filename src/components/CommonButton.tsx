@@ -1,12 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-
-type CommonButtonProps = {
-  text: string
-  width?: number
-  action: () => void
-  disabled?: boolean
-}
+import { CommonButtonProps } from "../types/CommonButtonProps"
 
 const ButtonLayout = styled.div<Omit<CommonButtonProps, "text" | "action">>`
   border: ${props => (props.disabled ? "2px solid #e5e5e5" : "2px solid #000")};

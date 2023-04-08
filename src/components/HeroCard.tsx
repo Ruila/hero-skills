@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import { HeroType } from "../types/HeroType"
 import { Link } from "react-router-dom"
+import { HeroCardProps } from "../types/HeroCardProps"
 
 const Card = styled.div<{ active: boolean }>`
   padding: 12px;
@@ -19,10 +19,6 @@ const ImageBox = styled.img`
   width: 80px;
   height: 80px;
 `
-
-type HeroCardProps = {
-  active: boolean
-} & HeroType
 
 export const HeroCard = React.memo(
   ({ id, name, image, active }: HeroCardProps): JSX.Element => {

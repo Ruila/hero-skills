@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import SkillButton from "./SkillButton"
-import { HeroSkillType } from "../types/HeroSkillType"
+import { SkillAdapterProps } from "../types/SkillAdapterProps"
 
 const SkillBox = styled.div`
   display: flex;
@@ -23,14 +23,6 @@ const SkillValue = styled.div`
   width: 60px;
   text-align: center;
 `
-
-type SkillAdapterProps = {
-  label: keyof HeroSkillType
-  value: number
-  restSkill: number
-  add: (skillKey: keyof HeroSkillType) => void
-  minus: (skillKey: keyof HeroSkillType) => void
-}
 
 function SkillAdapter({
   label,

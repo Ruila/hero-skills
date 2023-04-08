@@ -1,11 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-
-type SkillButtonProps = {
-  text: string
-  action: () => void
-  disabled?: boolean
-}
+import { SkillButtonProps } from "../types/SkillButtonProps"
 
 const ButtonLayout = styled.div<Omit<SkillButtonProps, "text" | "action">>`
   border: ${props => (props.disabled ? "2px solid #e5e5e5" : "2px solid #000")};
