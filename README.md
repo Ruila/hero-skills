@@ -36,15 +36,13 @@ First time using `styled-component`, figuring out the art of decomposing compone
 
 + /src/pages - page components
 
-+ /src/types - 
-
-
++ /src/types - types used in the project
 
 ### Install Dependencies
 
 `yarn`
 
-### Start
+### Start Project
 
 `yarn dev`
 
