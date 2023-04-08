@@ -38,6 +38,12 @@ First time using `styled-component`, figuring out the art of decomposing compone
 
 + /src/types - types used in the project
 
+### Performance Optimization
+
+1. Using `React.memo` to avoid re-rendering of HeroCard unless props `active` changes.
+2. Using `Suspense` and `React.lazy` for code-splitting.
+
+
 ### Install Dependencies
 
 `yarn`
