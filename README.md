@@ -16,7 +16,7 @@ It is a little demo about modifying point skill of heroes.
 
 **Axios**: Axios is a promised-based HTTP client for JavaScript. It has the ability to make HTTP requests from the browser and handle the transformation of request and response data.
 
-**React Router DOM**: It enables you to implement dynamic routing in a web app. Unlike the traditional routing architecture in which the routing is handled in a configuration outside of a running app, React Router DOM facilitates component-based routing according to the needs of the app and platform.
+**React Router DOM**: It enables you to implement dynamic routing in a web app. Unlike the traditional routing architecture in which the routing is handled in a configuration outside a running app, React Router DOM facilitates component-based routing according to the needs of the app and platform.
 
 ### Install Dependencies
 
