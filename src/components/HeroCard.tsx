@@ -27,7 +27,7 @@ type HeroCardProps = {
 export const HeroCard = React.memo(
   ({ id, name, image, active }: HeroCardProps): JSX.Element => {
     return (
-      <Link to={`/heroes/${id}`} replace={active}>
+      <Link to={`/heroes/${id}`}>
         <Card active={active}>
           <ImageBox src={image} />
           <div>{name}</div>

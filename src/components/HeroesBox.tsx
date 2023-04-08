@@ -16,7 +16,7 @@ type HeroesBoxProps = {
   data: Array<HeroType>
 }
 
-export const HeroesBox = React.memo(({ data }: HeroesBoxProps): JSX.Element => {
+export const HeroesBox = ({ data }: HeroesBoxProps): JSX.Element => {
   const { heroId } = useParams()
   const renderCards = data.map(item => (
     <HeroCard
@@ -28,6 +28,4 @@ export const HeroesBox = React.memo(({ data }: HeroesBoxProps): JSX.Element => {
     />
   ))
   return <CardsBox>{renderCards}</CardsBox>
-})
-
-HeroesBox.displayName = "HeroesBox"
+}
