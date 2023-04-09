@@ -29,6 +29,7 @@ const SaveAndRestSkillBox = styled.div`
   align-items: center;
   flex: 1;
   min-width: 140px;
+  position: relative;
 `
 
 const RestSkill = styled.div`
@@ -36,9 +37,19 @@ const RestSkill = styled.div`
   margin-bottom: 8px;
 `
 
+const MessageBox = styled.div<{ show: boolean }>`
+  position: absolute;
+  right: 8px;
+  bottom: 6px;
+  color: green;
+  opacity: ${props => (props.show ? 1 : 0)};
+  transition: opacity ease-in-out 0.3s;
+`
+
 const HeroSkillBoard = (): JSX.Element => {
   const { heroId } = useParams()
   const [skill, setSkill] = useState<HeroSkillType>(initSkillData)
+  const [successMsg, setSuccessMsg] = useState<boolean>(false)
   const [restSkill, setRestSkill] = useState<number>(0)
   const getData = async () => {
     const res = await getHeroSkill(Number(heroId))
@@ -47,7 +58,7 @@ const HeroSkillBoard = (): JSX.Element => {
 
   const saveSkill = async () => {
     const res = await updateHeroSkill(Number(heroId), skill)
-    console.info(res)
+    if (res.data === "OK") setSuccessMsg(true)
   }
 
   const addSkill = (skillKey: keyof HeroSkillType) => {
@@ -69,6 +80,17 @@ const HeroSkillBoard = (): JSX.Element => {
   useEffect(() => {
     getData()
   }, [heroId])
+
+  useEffect(() => {
+    if (successMsg) {
+      const timer = setTimeout(() => {
+        setSuccessMsg(false)
+      }, 2000)
+      return () => {
+        clearTimeout(timer)
+      }
+    }
+  }, [successMsg])
 
   return (
     <BoardLayout>
@@ -110,6 +132,7 @@ const HeroSkillBoard = (): JSX.Element => {
           action={saveSkill}
           disabled={restSkill !== 0}
         />
+        <MessageBox show={successMsg}>成功!</MessageBox>
       </SaveAndRestSkillBox>
     </BoardLayout>
   )
