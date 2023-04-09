@@ -11,6 +11,12 @@ const ButtonLayout = styled.div<Omit<SkillButtonProps, "text" | "action">>`
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
+  ${props =>
+    !props.disabled &&
+    `  &:hover {
+    background-color: #000;
+    color: #fff;
+  }`}
 `
 
 function SkillButton({
